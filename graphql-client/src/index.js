@@ -32,6 +32,8 @@ export function createApolloClient ({
   defaultHttpLink = true,
   // Options for the default HttpLink
   httpLinkOptions = {},
+  // Options for the default websocket SubscriptionClient
+  wsSubscriptionClientOptions = {},
   // Custom Apollo cache implementation (default is apollo-cache-inmemory)
   cache = null,
   // Options for the default cache
@@ -111,6 +113,7 @@ export function createApolloClient ({
           const authorization = getAuth(tokenName)
           return authorization ? { authorization } : {}
         },
+        ...wsSubscriptionClientOptions
       })
 
       // Create the subscription websocket link
